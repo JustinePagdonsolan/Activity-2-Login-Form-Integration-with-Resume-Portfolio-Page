@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// If not logged in, redirect to login page
+// Redirect to login if not logged in
 if (!isset($_SESSION['username'])) {
     header("Location: login.php");
     exit();
@@ -12,10 +12,7 @@ $name = "JUSTINE PAGDONSOLAN";
 $title = "DATABASE ADMINISTRATOR";
 $contact = "Sto. Domingo, Bauan, Batangas | justinepagdonsolan26@gmail.com | 09933590860";
 
-$careerObjective = "An enthusiastic and analytical BS in Computer Science graduate with a strong foundation in database
-management, SQL, and data security. Committed to delivering efficient and reliable data solutions and seeking
-an entry-level Database Administrator role to apply my technical abilities, critical thinking, and passion for data
-integrity and performance optimization.";
+$careerObjective = "An enthusiastic and analytical BS in Computer Science graduate with a strong foundation in database management, SQL, and data security. Committed to delivering efficient and reliable data solutions and seeking an entry-level Database Administrator role to apply my technical abilities, critical thinking, and passion for data integrity and performance optimization.";
 
 $education = "
 <b>August 2021 - May 2025</b><br>
@@ -46,236 +43,220 @@ $references = [
     "Engr. Carla M. Villanueva - DBMSA - Solutions Inc. | 0927 112 3344 | cmvillanueva.dbadmin@gmail.com",
     "Ms. Arlene P. Reyes - System Analyst, Solutions Inc. | 0915 667 8811 | arlene.reyes.sa@gmail.com"
 ];
-
-$displayName    = htmlspecialchars($name, ENT_QUOTES, 'UTF-8');
-$displayTitle   = htmlspecialchars($title, ENT_QUOTES, 'UTF-8');
-$displayContact = htmlspecialchars($contact, ENT_QUOTES, 'UTF-8');
-$loggedUser     = htmlspecialchars($_SESSION['username'], ENT_QUOTES, 'UTF-8');
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Resume - <?php echo $displayName; ?></title>
-    <style>
-        :root{
-            --navy: #061633;
-            --accent: #0f4c81;
-            --card: #ffffff;
-            --muted: #d3d6db;
-            --text-dark: #061633;
-            --soft-shadow: rgba(0,0,0,0.18);
-        }
+<meta charset="UTF-8">
+<title>Resume - <?php echo htmlspecialchars($name); ?></title>
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet">
+<style>
+    :root {
+        --navy: #061633;
+        --accent: #0f4c81;
+        --light-blue: #e8f0fa;
+        --card: #ffffff;
+        --text-dark: #031426;
+    }
 
-        html, body {
-            height: 100%;
-            margin: 0;
-            font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-            background: linear-gradient(180deg, var(--navy) 0%, #052032 100%);
-            color: var(--text-dark);
-            -webkit-font-smoothing:antialiased;
-            -moz-osx-font-smoothing:grayscale;
-        }
+    * {
+        box-sizing: border-box;
+    }
 
-        .container {
-            max-width: 840px;
-            margin: 48px auto;
-            background: var(--card);
-            border-radius: 10px;
-            box-shadow: 0 16px 40px var(--soft-shadow);
-            overflow: visible;
-            position: relative;
-            padding: 0 48px 48px 48px;
-            box-sizing: border-box;
-        }
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', Tahoma, sans-serif;
+        background: linear-gradient(135deg, #0a1b3d 0%, #0e2a52 50%, #0a1f42 100%);
+        background-attachment: fixed;
+        color: var(--text-dark);
+    }
 
-        .head-band {
-            background: linear-gradient(90deg,var(--accent), #0b5f9a);
-            height: 120px;
-            border-top-left-radius: 10px;
-            border-top-right-radius: 10px;
-            position: relative;
-        }
+    /* Floating Logout Button */
+    .logout {
+        position: fixed;
+        top: 20px;
+        right: 30px;
+        background: var(--accent);
+        color: #fff;
+        padding: 10px 22px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 14px;
+        letter-spacing: 0.5px;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+        transition: 0.2s ease-in-out;
+        z-index: 1000;
+    }
+    .logout:hover {
+        background: #0c3d6f;
+        transform: translateY(-2px);
+    }
 
-        .photo {
-            width: 130px;
-            height: 130px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid var(--card);
-            position: absolute;
-            top: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #eee;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.18);
-        }
+    /* Main Container */
+    .resume-wrapper {
+        max-width: 1100px;
+        margin: 100px auto;
+        background: var(--card);
+        border-radius: 16px;
+        display: grid;
+        grid-template-columns: 320px 1fr;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+        overflow: hidden;
+    }
 
-        .logout {
-            position: absolute;
-            top: 18px;
-            right: 20px;
-            background: rgba(255,255,255,0.08);
-            color: #fff;
-            border: 1px solid rgba(255,255,255,0.12);
-            padding: 6px 10px;
-            border-radius: 4px;
-            text-decoration: none;
-            font-size: 13px;
-            backdrop-filter: blur(2px);
-        }
-        .logout:hover {
-            background: rgba(255,255,255,0.14);
-        }
+    /* Left Panel */
+    .left-panel {
+        background: linear-gradient(180deg, var(--accent) 0%, #0a3c75 100%);
+        color: #fff;
+        padding: 40px 30px;
+        text-align: center;
+    }
+    .left-panel img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        border: 4px solid #fff;
+        object-fit: cover;
+        margin-bottom: 20px;
+    }
+    .left-panel h1 {
+        font-size: 24px;
+        margin: 10px 0 5px;
+    }
+    .left-panel h2 {
+        font-size: 15px;
+        font-weight: 400;
+        letter-spacing: 1px;
+        margin: 0;
+    }
+    .contact {
+        font-size: 14px;
+        margin-top: 20px;
+        line-height: 1.6;
+    }
 
-        .header {
-            text-align: center;
-            padding-top: 76px;
-            margin-bottom: 4px;
-        }
-        .name {
-            font-family: "Georgia", "Times New Roman", serif;
-            font-size: 28px;
-            color: #fff;
-            font-weight: 700;
-            margin: 8px 0 0 0;
-            letter-spacing: 0.6px;
-        }
-        .title {
-            font-size: 14px;
-            color: rgba(255,255,255,0.92);
-            margin: 6px 0 0 0;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
+    /* Right Panel */
+    .right-panel {
+        padding: 50px 60px;
+        background: var(--light-blue);
+        position: relative;
+    }
 
-        .contact-pill {
-            display:inline-block;
-            margin: 8px auto 18px auto;
-            padding: 8px 14px;
-            background: #f6f8fb;
-            color: #083049;
-            border-radius: 22px;
-            font-size: 13px;
-            box-shadow: 0 6px 18px rgba(9,30,45,0.04);
-        }
+    .section {
+        margin-bottom: 36px;
+    }
+    .section h3 {
+        font-size: 20px;
+        color: var(--accent);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 10px;
+        border-bottom: 2px solid var(--accent);
+        padding-bottom: 4px;
+    }
+    .section p {
+        font-size: 15px;
+        text-align: justify;
+        line-height: 1.7;
+    }
+    .section ul {
+        padding-left: 20px;
+    }
+    .section li {
+        font-size: 15px;
+        margin-bottom: 8px;
+        text-align: justify;
+    }
 
-        .divider {
-            height: 1px;
-            background: linear-gradient(90deg, rgba(6,22,51,0.04), rgba(6,22,51,0.12));
-            margin: 18px 0 24px 0;
-        }
+    /* Skills & References Split */
+    .two-col {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+    }
 
-        h3 {
-            font-size: 13px;
-            margin: 18px 0 10px 0;
-            text-transform: uppercase;
-            letter-spacing: 1.2px;
-            color: var(--accent);
-            text-align: center;
-        }
+    /* Download PDF Button */
+    .pdf-btn {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background: #fff;
+        color: var(--accent);
+        padding: 12px 24px;
+        border-radius: 30px;
+        font-size: 15px;
+        font-weight: 600;
+        border: 2px solid var(--accent);
+        cursor: pointer;
+        box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+        transition: 0.2s ease-in-out;
+    }
+    .pdf-btn:hover {
+        background: var(--accent);
+        color: #fff;
+    }
 
-        .content p {
-            font-size: 15px;
-            color: #031426;
-            line-height: 1.7;
-            text-align: justify; /* ✅ justified text */
-            margin: 6px 0 0 0;
+    @media (max-width: 900px) {
+        .resume-wrapper {
+            grid-template-columns: 1fr;
         }
-
-        .two-col {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 28px;
-            margin-top: 12px;
-            justify-items: center;
+        .left-panel {
+            padding: 30px;
         }
-        .col {
-            max-width: 360px;
+        .right-panel {
+            padding: 30px;
         }
-
-        ul.styled {
-            list-style: none;
-            padding: 0;
-            margin: 6px 0 0 0;
-        }
-        ul.styled li {
-            position: relative;
-            padding-left: 28px;
-            margin: 8px 0;
-            text-align: justify; /* ✅ justified list text */
-            color: #04263b;
-            font-size: 14px;
-            line-height: 1.6;
-        }
-        ul.styled li:before {
-            content: "";
-            width: 10px;
-            height: 10px;
-            background: linear-gradient(180deg, var(--accent), #0b5f9a);
-            position: absolute;
-            left: 0;
-            top: 6px;
-            border-radius: 2px;
-            box-shadow: 0 2px 6px rgba(11,95,154,0.18);
-        }
-
-        .references li { font-size: 14px; color: #04263b; }
-
-        .muted {
-            font-size: 12px;
-            color: #6b7b88;
-            text-align: center;
-            margin-top: 10px;
-        }
-
-        @media (max-width: 720px) {
-            .container { margin: 28px 18px; padding: 0 22px 32px 22px; }
-            .two-col { grid-template-columns: 1fr; gap: 18px; }
-            .photo { width: 110px; height: 110px; top: 34px; }
-            .name { font-size: 22px; color: #fff; }
-        }
-    </style>
+    }
+</style>
 </head>
 <body>
-    <div class="container">
-        <div class="head-band" aria-hidden="true">
-            <a class="logout" href="logout.php">Logout</a>
-            <img class="photo" src="formal.jpg.jpeg" alt="Profile photo" onerror="this.src=''; this.style.background='#dcdcdc'">
+
+    <!-- Logout Button -->
+    <a class="logout" href="logout.php">Log Out</a>
+
+    <div class="resume-wrapper">
+        <!-- Left Panel -->
+        <div class="left-panel">
+            <img src="formal.jpg.jpeg" alt="Profile photo" onerror="this.style.background='#dcdcdc'">
+            <h1><?php echo htmlspecialchars($name); ?></h1>
+            <h2><?php echo htmlspecialchars($title); ?></h2>
+            <div class="contact">
+                <p><?php echo htmlspecialchars($contact); ?></p>
+            </div>
         </div>
 
-        <div class="header" role="banner" aria-labelledby="resume-title">
-            <div class="name" id="resume-title"><?php echo $displayName; ?></div>
-            <div class="title"><?php echo $displayTitle; ?></div>
-            <div class="contact-pill"><?php echo $displayContact; ?></div>
-        </div>
+        <!-- Right Panel -->
+        <div class="right-panel">
+            <div class="section">
+                <h3><i class="ri-target-line"></i> Career Objective</h3>
+                <p><?php echo htmlspecialchars($careerObjective, ENT_QUOTES, 'UTF-8'); ?></p>
+            </div>
 
-        <div class="divider" role="separator" aria-hidden="true"></div>
+            <div class="section">
+                <h3><i class="ri-graduation-cap-line"></i> Education</h3>
+                <p><?php echo $education; ?></p>
+            </div>
 
-        <div class="content" role="main">
-            <h3>Career Objective</h3>
-            <p><?php echo htmlspecialchars($careerObjective, ENT_QUOTES, 'UTF-8'); ?></p>
+            <div class="section">
+                <h3><i class="ri-briefcase-line"></i> Internship Experience</h3>
+                <p><?php echo $internship; ?></p>
+            </div>
 
-            <h3>Education</h3>
-            <p><?php echo $education; ?></p>
-
-            <h3>Internship Experience</h3>
-            <p><?php echo $internship; ?></p>
-
-            <h3>Skills & References</h3>
-            <div class="two-col" role="group" aria-label="Skills and references">
-                <div class="col" aria-labelledby="skills-heading">
-                    <strong id="skills-heading" class="muted">Special Skills</strong>
-                    <ul class="styled" aria-describedby="skills-heading">
+            <div class="section two-col">
+                <div>
+                    <h3><i class="ri-tools-line"></i> Special Skills</h3>
+                    <ul>
                         <?php foreach ($skills as $skill): ?>
                             <li><?php echo htmlspecialchars($skill, ENT_QUOTES, 'UTF-8'); ?></li>
                         <?php endforeach; ?>
                     </ul>
                 </div>
 
-                <div class="col" aria-labelledby="refs-heading">
-                    <strong id="refs-heading" class="muted">References</strong>
-                    <ul class="styled references" aria-describedby="refs-heading">
+                <div>
+                    <h3><i class="ri-contacts-line"></i> References</h3>
+                    <ul>
                         <?php foreach ($references as $ref): ?>
                             <li><?php echo htmlspecialchars($ref, ENT_QUOTES, 'UTF-8'); ?></li>
                         <?php endforeach; ?>
@@ -283,8 +264,14 @@ $loggedUser     = htmlspecialchars($_SESSION['username'], ENT_QUOTES, 'UTF-8');
                 </div>
             </div>
 
-            <div class="muted">Last updated: <?php echo date('F j, Y'); ?></div>
+            <div class="section" style="text-align:center; font-size: 13px; color:#555;">
+                Last updated: <?php echo date('F j, Y'); ?>
+            </div>
         </div>
     </div>
+
+    <!-- Download PDF Button -->
+    <button class="pdf-btn" onclick="window.print()"><i class="ri-printer-line"></i> Download as PDF</button>
+
 </body>
 </html>
