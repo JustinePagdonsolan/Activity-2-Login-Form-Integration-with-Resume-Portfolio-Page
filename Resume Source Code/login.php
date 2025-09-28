@@ -30,8 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     elseif (strlen($password) < 4) {
         $error = "Password must be at least 4 characters.";
     } else {
-        // -- Authentication (sample hardcoded credentials) --
-        // Replace this block with DB lookup or hashed password check in a real app
+        // -- Authentication 
         $validUsername = "student";
         $validPassword = "1234";
 
@@ -84,4 +83,5 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     </div>
 </body>
 </html>
+
 
